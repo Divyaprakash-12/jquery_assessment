@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation</title>
+    <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+</head>
+
+<body>
+    <form name="form1" id="form1" method="post" action="">
+       <fieldset>
+        <h3><center>Validation</center></h3>
+        <label>Password</label>
+        <input type="password" id="pwd" name="pwd" placeholder="Enter password"><br><br>
+        <label>Phone number</label>
+        <input type="text" id="phno" name="phno" placeholder="Enter  phone number"><br><br>
+        <label>E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Enter email"><br><br>
+        <input type="submit" value="submit">
+        <input type="reset" value="clear">
+    </fieldset>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("#form1").validate({
+                rules: {  
+                    'email': {
+                        required: true,
+                        email: true,
+                        pattern:/^[A-Z0-9]+@[cgvakindia]+\.[com]{3}$/i
+                    },
+                    'phno': {
+                        required: true,
+                        minlength: 10,
+                        pattern: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/
+                    },
+                    'pwd': {
+                        required: true,
+                        minlength: 7,
+                        maxlength: 16,
+                        pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_])/
+
+                    }
+                },
+                messages: {
+                   
+                    'email': {
+                        required: "enter email",
+                        email: "enter a valid email",
+                        pattern: "email address should be in valid format"
+                    },
+                    'phno': {
+                        required: "enter phone number",
+                        minlength: "minimum length should be 10",
+                        pattern: "enter correct phone number pattern"
+                    },
+                    'pwd': {
+                        required: "enter password",
+                        minlength: "minimum 7 characters",
+                        maxlength: "maximum 16 characters",
+                        pattern: "enter correct password pattern"
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
